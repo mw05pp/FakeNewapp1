@@ -1,3 +1,4 @@
+#import libraries and dependencies
 import pandas as pd
 import numpy as np
 
@@ -20,6 +21,9 @@ import newspaper
 from newspaper import Article
 
 import urllib
+
+from datetime import datetime
+
 
 news = pd.read_csv('data/news.csv')
 X = news['text']
@@ -82,6 +86,7 @@ def predict():
 
     #Passing the news article to the model and returing whether it is Fake or Real
         article_data['pred'] = model.predict([ article_data['summary'] ])
+        article_data['pred_probability'] = model.predict_proba([ article_data['summary'] ])
 
     else:
         article_data['error'] = 'Something seems wrong with the link provided.'

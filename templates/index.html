@@ -15,11 +15,37 @@
 </div>
 <div class="">
     {% if article_data | length > 1 %}
-        <p>The news is <strong> {{ article_data['pred'][0] }} </strong></p>
-        <p> {{ article_data['title'] }} </p>
-        <p> {{ ', '.join(article_data['authors']) }} </p>
-        <p> {{ article_data['publish_date'] }} </p>
-        <p> {{ article_data['summary'] }} </p>
+        {# <p>The news is <strong> {{ article_data['pred'][0] }} </strong> ( {{ "%0.2f" % article_data['pred_probability'][0][0] }} ) </p>
+        <p> Title: {{ article_data['title'] }} </p>
+        <p> Authors: {{ ', '.join(article_data['authors']) }} </p>
+        <p> Publish Date: {{ article_data['publish_date'] }} </p>
+        Summary
+        <p> {{ article_data['summary'] }} </p> #}
+
+        <table class="table">
+            <tr>
+                <td>Real or Fake</td>
+                <td>{{ article_data['pred'][0] }} ({{  "%.2f" % (article_data['pred_probability'][0][1] * 100) }}%)</td>
+            </tr>
+            <tr>
+                <td>Title</td>
+                <td>{{ article_data['title'] }}</td>
+            </tr>
+            <tr>
+                <td>Authors</td>
+                <td>{{ ', '.join(article_data['authors']) }}</td>
+            </tr>
+            <tr>
+                <td>Publish Date</td>
+                <td>{{ article_data['publish_date'].strftime("%Y/%m/%d") }}</td>
+            </tr>
+            <tr>
+                <td>Summary</td>
+                <td>{{ article_data['summary'] }}</td>
+            </tr>
+
+
+        </table>
 
     {% elif article_data | length == 1 %}
 
