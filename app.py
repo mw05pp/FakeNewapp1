@@ -24,7 +24,7 @@ import urllib
 
 from datetime import datetime
 
-# import data
+
 news = pd.read_csv('data/news.csv')
 X = news['text']
 y = news['label']
