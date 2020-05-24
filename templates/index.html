@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="">
+    <h1>Predict Fake News</h1>
+    <hr>
+    <form class="form-group" action="{{ url_for('predict') }}" method="post">
+        <div class="form-group">
+            <input type="text" name="news" value="" placeholder="Enter the news url" required='required'>
+        </div>
+        <div class="form-group">
+            <input type="submit" name="" value="Predict" class="btn btn-primary">
+        </div>
+    </form>
+</div>
+<div class="">
+    {% if article_data | length > 1 %}
+        <p>The news is <strong> {{ article_data['pred'][0] }} </strong></p>
+        <p> {{ article_data['title'] }} </p>
+        <p> {{ ', '.join(article_data['authors']) }} </p>
+        <p> {{ article_data['publish_date'] }} </p>
+        <p> {{ article_data['summary'] }} </p>
+
+    {% elif article_data | length == 1 %}
+
+        <p>{{ article_data['error'] }}</p>
+
+    {% else %}
+        <p></p>
+
+    {% endif %}
+</div>
+
+{% endblock %}
